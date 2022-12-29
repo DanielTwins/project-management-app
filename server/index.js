@@ -20,3 +20,5 @@ app.use('/graphql', graphqlHTTP({
 }))
 
 app.listen(port, console.log(`Server is running on port ${port}`));
+
+// checking github updates
