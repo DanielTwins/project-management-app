@@ -2,8 +2,8 @@
 const { projects, clients } = require("../sampleData.js"); // not using the sample data when you have the models and get data from DB
 
 // Mongoose models
-const Project = require("../models/Project");
-const Client = require("../models/Client");
+const Project = require("../models/Project")
+const Client = require("../models/Client")
 
 // could do this way but to save a line, we destructure it as below
 /* 

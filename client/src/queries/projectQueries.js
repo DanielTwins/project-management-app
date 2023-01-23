@@ -1,5 +1,6 @@
 import { gql } from "@apollo/client";
 
+// get all projects
 const GET_PROJECTS = gql`
   query getProjects {
     projects {
@@ -10,4 +11,22 @@ const GET_PROJECTS = gql`
   }
 `;
 
-export { GET_PROJECTS };
+// get the single project
+const GET_PROJECT = gql`
+  query getProject($id: ID!) {
+    project(id: $id) {
+      id
+      name
+      description
+      status
+      client {
+        id
+        name
+        email
+        phone
+      }
+    }
+  }
+`;
+
+export { GET_PROJECTS, GET_PROJECT };
