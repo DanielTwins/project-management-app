@@ -2,8 +2,8 @@
 const { projects, clients } = require("../sampleData.js"); // not using the sample data when you have the models and get data from DB
 
 // Mongoose models
-const Project = require("../models/Project")
-const Client = require("../models/Client")
+const Project = require("../models/Project");
+const Client = require("../models/Client");
 
 // could do this way but to save a line, we destructure it as below
 /* 
@@ -48,7 +48,7 @@ const ProjectType = new GraphQLObjectType({
   }),
 });
 
-// Client Type - the convention is to use upercase
+// Client Type
 const ClientType = new GraphQLObjectType({
   name: "Client",
   fields: () => ({
@@ -124,17 +124,27 @@ const mutation = new GraphQLObjectType({
         return client.save();
       },
     },
-    //* delete a client from MongoDB
+    // *********** delete a client from MongoDB
     deleteClient: {
       type: ClientType,
       args: {
         id: { type: GraphQLNonNull(GraphQLID) },
       },
       resolve(parent, args) {
+
+        //? use project model, find the associated project with the 
+        //? found id 
+        Project.find({ clientId: args.id }).then((projects) => {
+          projects.forEach((project) => {
+            project.deleteOne(); // project.remove() removes all associated projects
+          });
+        });
+
+        //? removes the client with the found id
         return Client.findByIdAndRemove(args.id);
       },
     },
-    //************ add a project
+    // ************ add a project
     addProject: {
       type: ProjectType,
       args: {
@@ -192,7 +202,7 @@ const mutation = new GraphQLObjectType({
             values: {
               new: { value: "Not Started" },
               progress: { value: "In Progress" },
-              completed: { value: "Completed" }, 
+              completed: { value: "Completed" },
             },
           }),
         },

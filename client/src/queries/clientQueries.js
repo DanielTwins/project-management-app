@@ -11,6 +11,6 @@ const GET_CLIENTS = gql`
   }
 `;
 
-//! export it in curly braces ant not as default
-//! cause we have more than one query
+//! export it in curly braces, not as default
+//! cause we have/might more than one query
 export { GET_CLIENTS }
