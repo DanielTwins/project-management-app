@@ -1,6 +1,6 @@
 # Project-Management-App
 
-# A learning React/GraphQL application for purpose of project managemnet with CRUD functionailty mainly using GraphQL mutations, queries and it's GraphiQL tool. 
+## A learning React/GraphQL application for purpose of project managemnet with CRUD functionailty mainly using GraphQL mutations, queries and it's GraphiQL tool. 
 
 ## mainly used techs and tools:
 
