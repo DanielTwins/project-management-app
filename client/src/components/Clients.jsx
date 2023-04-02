@@ -5,7 +5,7 @@ import ClientRow from "./ClientRow";
 import { GET_CLIENTS } from "../queries/clientQueries";
 import Spinner from "./Spinner";
 
-//! move the query to a separate folder and then import them 
+//! move the query to a separate folder and then import them
 // create the query, cap letters as the convention
 /* const GET_CLIENTS = gql`
   query getClients {
@@ -19,7 +19,7 @@ import Spinner from "./Spinner";
 `; */
 
 function Clients() {
-  //! geting these params from useQuery hook and descructuring them
+  //! geting these params from useQuery hook and destructuring them
   //! using apollo and apollo provider has it's own state manager like
   //! redux and context api.
   // eslint-disable-next-line

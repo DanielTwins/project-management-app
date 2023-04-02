@@ -2,15 +2,15 @@ import { useState } from "react";
 import { FaList } from "react-icons/fa";
 import { useMutation, useQuery } from "@apollo/client";
 
-import { GET_PROJECT, GET_PROJECTS } from "../queries/projectQueries";
-import { GET_CLIENTS } from "../queries/clientQueries";
 import { ADD_PROJECT } from "../mutations/projectMutations";
+import { GET_PROJECTS } from "../queries/projectQueries";
+import { GET_CLIENTS } from "../queries/clientQueries";
 
 export default function AddProjectModal() {
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [clientId, setClientId] = useState("");
-  const [status, setStatus] = useState("new");
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [clientId, setClientId] = useState('');
+  const [status, setStatus] = useState('new');
 
   // add a project by using projectMutation
   const [addProject] = useMutation(ADD_PROJECT, {
@@ -23,7 +23,9 @@ export default function AddProjectModal() {
       const { projects } = cache.readQuery({ query: GET_PROJECTS });
       cache.writeQuery({
         query: GET_PROJECTS,
-        data: { projects: projects.concat([addProject]) },
+        /* data: { projects: projects.concat([addProject]) }, */
+        //? the better way
+        data: { projects: [...projects, addProject] },
       });
     },
   });
@@ -41,6 +43,7 @@ export default function AddProjectModal() {
     }
 
     // pass in the values from the states from the form
+    addProject(name, description, clientId, status);
 
     //? clear the form then
     setName("");
